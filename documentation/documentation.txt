@@ -1,0 +1,11 @@
+1. User Interaction:
+   - User logs in and submits their issue through a form.
+   - Allows for attaching screenshots or voice notes.
+
+
+Accounts app to manage my users:
+
+I have the following users:
+1. Client
+2. Admin
+3. Support staff
