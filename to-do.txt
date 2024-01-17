@@ -1,0 +1,33 @@
+1. User Interaction:
+   - User logs in and submits their issue through a form.
+   - Allows for attaching screenshots or voice notes.
+
+2. Ticket Generation:
+   - Upon submission, the system generates a unique ticket number.
+   - Sends an email notification to the user with the ticket number and a confirmation message.
+   - Sends an email and site notification to the admin notifying them of the new issue.
+
+3. Admin Panel:
+   - Admin logs in to the admin panel.
+   - Views a list of all submitted issues with relevant details.
+   - Accesses a list of all support staff, including those already assigned and available.
+
+4. Issue Assignment:
+   - Admin assigns the issue to a specific support staff member.
+   - Support staff member receives a notification of the assignment.
+
+5. Task Progress:
+   - Support staff updates the task progress (ongoing, incapable, completed) and provides necessary details.
+   - Admin monitors task progress through the admin panel.
+
+6. Incomplete Task Handling:
+   - If marked incomplete, admin receives a notification and follows up.
+   - Support staff provides a description of why the task is marked incomplete.
+
+7. Task Completion:
+   - If marked as complete, admin receives a notification.
+   - Admin reviews the completion status and either approves or marks as pending.
+
+8. User Notification:
+   - If marked as complete by the admin, the user receives a notification that the issue has been resolved.
+
