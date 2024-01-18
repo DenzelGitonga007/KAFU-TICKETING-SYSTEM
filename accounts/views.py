@@ -13,14 +13,15 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success("Congratulations! You're logged in.")
+            messages.success(request, "Congratulations! You're logged in.")
             return redirect('accounts:home') # redirect to home page after successful login/register
         else:
             # What should be here?
-            messages.error("Registration failed! Please try again.")
+            messages.error(request, "Registration failed! Please try again.")
     else:
         form = CustomUserCreationForm()
-    context = {'form', form}
+    context = {'form': form}
+
     return render(request, 'accounts/register.html', context)
 
 # Login user
@@ -37,5 +38,6 @@ def login_user(request):
             messages.error(request, "Login failed! Please try again")
     else:
         form = CustomAuthenticationForm()
+
     context = {'form': form}
     return render(request, 'accounts/login.html', context)
