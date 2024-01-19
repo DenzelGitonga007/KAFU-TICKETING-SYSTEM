@@ -30,8 +30,13 @@
 8. User Notification:
    - If marked as complete by the admin, the user receives a notification that the issue has been resolved.
 
+9. Git Ignore:
+   - Uploads
+   - Migrations
+
 
 Done ✅
 1. User Account:
    - User logs in/ registers 
+
 
