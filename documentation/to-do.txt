@@ -1,8 +1,7 @@
-1. User Interaction:
-   - User logs in and submits their issue through a form.
-   - Allows for attaching screenshots or voice notes.
-
 2. Ticket Generation:
+   - Presents the form for submitting the issue
+      - Allows for attaching screenshots or voice notes.
+   - Client submits their issue
    - Upon submission, the system generates a unique ticket number.
    - Sends an email notification to the user with the ticket number and a confirmation message.
    - Sends an email and site notification to the admin notifying them of the new issue.
@@ -30,4 +29,9 @@
 
 8. User Notification:
    - If marked as complete by the admin, the user receives a notification that the issue has been resolved.
+
+
+Done ✅
+1. User Account:
+   - User logs in/ registers 
 
