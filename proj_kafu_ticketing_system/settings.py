@@ -130,8 +130,8 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 
 # Emailing
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # for local host console
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

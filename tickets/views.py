@@ -20,8 +20,8 @@ def submit_ticket(request):
             # Send the email upon success
             # The email variables
             # Client
-            client_subject = "Issue {} submitted succefully".format(ticket.ticket_number)
-            client_message = "Your issue has been received, and is being worked on. Your ticket number is. For any enquries, please contact the ICT Support"
+            client_subject = "Issue submitted succefully"
+            client_message = "Your issue has been received, and is being worked on. Your ticket number is {}. For any enquries, please contact the ICT Support".format(ticket.ticket_number)
             sender_email = settings.EMAIL_HOST_USER
             receipient_email = ["denzelgitonga007@gmail.com"]
             send_mail(
