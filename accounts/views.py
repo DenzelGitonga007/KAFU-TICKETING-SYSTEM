@@ -6,6 +6,13 @@ from django.contrib.auth import login, authenticate
 
 # Create your views here.
 
+# Home
+def home(request):
+    """Landing page"""
+    context = {} # to be updated
+    return render(request, 'index.html', context)
+
+
 # Register user
 def register(request):
     if request.method == 'POST':
