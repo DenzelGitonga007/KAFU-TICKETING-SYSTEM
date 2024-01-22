@@ -17,6 +17,14 @@ def submit_ticket(request):
             ticket.user = request.user
             ticket.save()
 
+            # Send the email upon success
+            send_mail(
+                "Issue submitted successfully", #"Subject here",
+                "Your issue has been received and is being worked on successfully", # message
+                None, # "from@example.com",
+                ["denzelgitonga007@gmail.com"], # ["to@example.com"],
+                fail_silently=False,
+                )
             # Upon success of the above
             messages.success(request, "Congratulations! Your issue has been submitted successful, and the support team has been notified. Please check your email to receive your ticket number")
             return redirect('accounts:home')
