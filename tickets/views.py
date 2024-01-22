@@ -18,13 +18,33 @@ def submit_ticket(request):
             ticket.save()
 
             # Send the email upon success
+            # The email variables
+            # Client
+            client_subject = "Issue {} submitted succefully".format(ticket.ticket_number)
+            client_message = "Your issue has been received, and is being worked on. Your ticket number is. For any enquries, please contact the ICT Support"
+            sender_email = settings.EMAIL_HOST_USER
+            receipient_email = ["denzelgitonga007@gmail.com"]
             send_mail(
-                "Issue submitted successfully", #"Subject here",
-                "Your issue has been received and is being worked on successfully", # message
-                None, # "from@example.com",
-                ["denzelgitonga007@gmail.com"], # ["to@example.com"],
+                client_subject,
+                client_message,
+                sender_email,
+                receipient_email,
                 fail_silently=False,
                 )
+            
+            # Admin
+            admin_subject = "A new issue {} submitted".format(ticket.ticket_number)
+            admin_message = "Please login and find check out the issue, for more information"
+            sender_email = settings.EMAIL_HOST_USER
+            receipient_email = ["gitongadenzel@gmail.com"]
+            send_mail(
+                admin_subject,
+                admin_message,
+                sender_email,
+                receipient_email,
+                fail_silently=False
+            )
+
             # Upon success of the above
             messages.success(request, "Congratulations! Your issue has been submitted successful, and the support team has been notified. Please check your email to receive your ticket number")
             return redirect('accounts:home')

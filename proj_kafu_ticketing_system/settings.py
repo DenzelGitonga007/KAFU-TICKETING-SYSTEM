@@ -130,11 +130,12 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 
 # Emailing
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "KAFU IT Support System"
 EMAIL_HOST_USER = "gitongadenzel@gmail.com"
-EMAIL_HOST_PASSWORD = "znzqwrihtspbnzcm"
+EMAIL_HOST_PASSWORD = "qvaetjezzmedjagm"
+EMAIL_DEBUG = True
