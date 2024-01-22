@@ -1,11 +1,3 @@
-2. Ticket Generation:
-   - Presents the form for submitting the issue
-      - Allows for attaching screenshots or voice notes.
-   - Client submits their issue
-   - Upon submission, the system generates a unique ticket number.
-   - Sends an email notification to the user with the ticket number and a confirmation message.
-   - Sends an email and site notification to the admin notifying them of the new issue.
-
 3. Admin Panel:
    - Admin logs in to the admin panel.
    - Views a list of all submitted issues with relevant details.
@@ -35,8 +27,21 @@
    - Migrations
 
 
+
+
 Done ✅
 1. User Account:
    - User logs in/ registers 
 
+2. Ticket Generation:
+   - Presents the form for submitting the issue
+      - Allows for attaching screenshots or voice notes.
+   - Client submits their issue
+   - Upon submission, the system generates a unique ticket number.
+   - Sends an email notification to the user with the ticket number and a confirmation message.
+   
 
+
+To-Do Later
+2. Ticket Generation:
+   - Sends an email and site notification to the admin notifying them of the new issue.
