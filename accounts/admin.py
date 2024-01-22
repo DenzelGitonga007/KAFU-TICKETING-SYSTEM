@@ -6,7 +6,7 @@ from .models import CustomUser
 # Users' model
 class CustomUserAdmin(admin.ModelAdmin):
     """Manage the users"""
-    list_display = ['username', 'user_type', 'is_superuser'] # fields to display
+    list_display = ['username', 'email', 'user_type', 'is_superuser'] # fields to display
     search_fields = ['username', 'user_type'] # fields to search
 
     def __str__(self):
