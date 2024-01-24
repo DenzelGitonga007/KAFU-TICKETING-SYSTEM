@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import CustomUser
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 
 # Create your views here.
 
@@ -48,3 +48,10 @@ def login_user(request):
 
     context = {'form': form}
     return render(request, 'accounts/login.html', context)
+
+
+# Logout
+def logout_user(request):
+    """Logout the user"""
+    logout(request)
+    return redirect('accounts:home')

@@ -6,6 +6,7 @@
     <title>Submit Issue</title>
 </head>
 <body>
+    <a href="{% url 'accounts:logout' %}">Logout</a>
     <h1>Submit Issue</h1>
     <form method="post", enctype="multipart/form-data">
         {% csrf_token %}

@@ -5,10 +5,12 @@ from accounts.models import CustomUser # the user
 from .forms import TicketSubmissionForm # form to submit the Ticket details
 from django.core.mail import send_mail # to send mail
 from django.conf import settings # to configure the mail
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 # The ticket data form submission
+@login_required(login_url='accounts:login') # user must be logged in to submit the ticket
 def submit_ticket(request):
     if request.method == 'POST':
         form = TicketSubmissionForm(request.POST, request.FILES)
