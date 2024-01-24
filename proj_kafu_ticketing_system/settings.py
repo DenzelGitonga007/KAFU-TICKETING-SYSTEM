@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Additional apps
     'accounts', # User accounts
-    'tickets', # Client issue submission, and notifications to both admin and client
+    'clients', # Client issue submission, and notifications to both admin and client
 ]
 
 MIDDLEWARE = [
