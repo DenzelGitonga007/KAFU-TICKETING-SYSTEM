@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # Additional apps
     'accounts', # User accounts
     'clients', # Client issue submission, and notifications to both admin and client
+    'admin_panel' # Admin can manage all activities
 ]
 
 MIDDLEWARE = [
