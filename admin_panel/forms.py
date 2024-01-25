@@ -14,6 +14,6 @@ class AssignmentForm(forms.ModelForm):
         def __init__(self, *args, **kwargs):
            super(AssignmentForm, self).__init__(*args, **kwargs)
            # Filter to display only the support staff
-           self.fields["assigned_to"].queryset = CustomUser.objects.filter(usert_type="support_staff")
+           self.fields["assigned_to"].queryset = CustomUser.objects.filter(user_type="support_staff")
         
         

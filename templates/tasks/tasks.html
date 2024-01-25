@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+</head>
+<body>
+    <h1>Tasks</h1>
+    {% if assigned_tasks %}
+    <ul>
+        {% for task in assigned_tasks %}
+        <li>
+            Issue: {{ task.issue.ticket_number }}
+            Progress Status: {{ task.progress_status }}
+            Details: {{ task.details }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No tasks assigned</p>
+    {% endif %}
+</body>
+</html>
