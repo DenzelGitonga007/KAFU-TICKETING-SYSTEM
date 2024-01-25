@@ -3,10 +3,6 @@
    - Views a list of all submitted issues with relevant details.
    - Accesses a list of all support staff, including those already assigned and available.
 
-4. Issue Assignment:
-   - Admin assigns the issue to a specific support staff member.
-   - Support staff member receives a notification of the assignment.
-
 5. Task Progress:
    - Support staff updates the task progress (ongoing, incapable, completed) and provides necessary details.
    - Admin monitors task progress through the admin panel.
@@ -39,9 +35,13 @@ Done ✅
    - Client submits their issue
    - Upon submission, the system generates a unique ticket number.
    - Sends an email notification to the user with the ticket number and a confirmation message.
+
+4. Issue Assignment:
+   - Admin assigns the issue to a specific support staff member.
+   - Support staff member receives a notification of the assignment.
    
 
 
-To-Do Later
+To-Do Later ⌚
 2. Ticket Generation:
    - Sends an email and site notification to the admin notifying them of the new issue.
