@@ -4,5 +4,5 @@ from . import views
 app_name = "admin_panel"
 
 urlpatterns = [
-    
+    path('', views.admin_panel, name="admin_panel") # view the admin panel
 ]
