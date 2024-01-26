@@ -11,13 +11,13 @@ from admin_panel.models import Assignment # to view and update the assignment fr
 @login_required(login_url="accounts:login")
 def assigned_tasks(request):
     """Retrieve the tasks of the support staff"""
-    support_staff = request.user
-
+    
     # Retrieve just the tasks assigned to the support staff
-    assigned_tasks = Assignment.objects.filter(assigned_to=support_staff) # for the Assignment model
-    # assigned_tasks = AssignedTask.objects.filter(support_staff=support_staff)
-
+    assigned_tasks = Assignment.objects.filter(assigned_to=request.user) # for the Assignment model
+   
     context = {
         'assigned_tasks': assigned_tasks,
     }
     return render(request, "tasks/tasks.html", context)
+
+

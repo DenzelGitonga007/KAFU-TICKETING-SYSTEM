@@ -1,4 +1,3 @@
-from collections.abc import Iterable
 from django.db import models
 from clients.models import Issue # import the Issues model
 from accounts.models import CustomUser # get the user
@@ -13,10 +12,10 @@ class Assignment(models.Model):
     progress_choices = [
         ('unseen', 'Unseen'),
         ('ongoing', 'Ongoing'),
-        ('incapable', 'Ongoing'),
+        ('incapable', 'Incapable'),
         ('completed', 'Completed')
     ]
-    progress_status = models.CharField(max_length=10, choices=progress_choices, default='Unseen')
+    progress_status = models.CharField(max_length=10, choices=progress_choices, default='unseen')
     assigned_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
