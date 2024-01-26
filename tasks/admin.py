@@ -9,6 +9,7 @@ class AssignedTaskAdmin(admin.ModelAdmin):
     """Manage the assigned task for support staff side"""
     list_display = ["support_staff", "issue", "progress_status", "updated_at", "details"]
     search_fields = ["support_staff", "issue", "progress_status", "updated_at", "details"]
+    list_filter = ('support_staff', 'issue')
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "support_staff":

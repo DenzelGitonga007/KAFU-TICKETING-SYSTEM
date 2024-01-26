@@ -8,6 +8,7 @@ from .forms import AssignmentForm
 # Assignment admin
 class AssignmentAdmin(admin.ModelAdmin):
     """Manage the assignments model"""
+    list_filter = ('assigned_to', 'issue')
     list_display = ["issue", "assigned_to", "is_completed", "assigned_at"]
     search_fields = ["issue", "assigned_to", "is_completed"]
     
@@ -16,6 +17,7 @@ class AssignmentAdmin(admin.ModelAdmin):
             kwargs["queryset"] = CustomUser.objects.filter(user_type='support_staff')
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
+    
 
 
 admin.site.register(Assignment, AssignmentAdmin)

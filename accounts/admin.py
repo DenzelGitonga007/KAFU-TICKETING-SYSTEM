@@ -8,6 +8,7 @@ class CustomUserAdmin(admin.ModelAdmin):
     """Manage the users"""
     list_display = ['username', 'email', 'user_type', 'is_superuser'] # fields to display
     search_fields = ['username', 'user_type'] # fields to search
+    list_filter = ('username', 'user_type')
 
     def __str__(self):
         """Stringify the data"""
