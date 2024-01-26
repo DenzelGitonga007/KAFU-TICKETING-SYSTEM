@@ -13,8 +13,8 @@
         <li>
             Issue: {{ task.issue.ticket_number }}
             Progress Status: {{ task.progress_status }}
-            Details: {{ task.details }}
-            <a href="{% url 'tasks:update_task' task.issue_id %}">Update</a>
+            Notes: {{ task.notes }}
+            <a href="">Update</a>
         </li>
         {% endfor %}
     </ul>
