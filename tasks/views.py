@@ -47,7 +47,8 @@ def assigned_tasks(request):
     support_staff = request.user
 
     # Retrieve just the tasks assigned to the support staff
-    assigned_tasks = Assignment.objects.filter(assigned_to=support_staff)
+    # assigned_tasks = Assignment.objects.filter(assigned_to=support_staff) # for the Assignment model
+    assigned_tasks = AssignedTask.objects.filter(support_staff=support_staff)
 
     context = {
         'assigned_tasks': assigned_tasks,
