@@ -8,9 +8,9 @@ from .forms import AssignmentForm
 # Assignment admin
 class AssignmentAdmin(admin.ModelAdmin):
     """Manage the assignments model"""
-    list_filter = ('assigned_to', 'issue')
-    list_display = ["issue", "assigned_to", "is_completed", "assigned_at"]
-    search_fields = ["issue__ticket_number", "assigned_to__username", "is_completed"]
+    list_filter = ("assigned_to", "issue", "progress_status", "is_completed")
+    list_display = ["issue", "assigned_to", "notes", "progress_status", "assigned_at", "updated_at", "is_completed",]
+    search_fields = ["issue__ticket_number", "assigned_to__username", "progress_status", "assigned_at","is_completed"]
     
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "assigned_to":

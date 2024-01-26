@@ -9,7 +9,7 @@ class AssignmentForm(forms.ModelForm):
     """Form for assigning the support staff"""
     class Meta:
         model = Assignment
-        fields = ["issue", "assigned_to"]
+        fields = ["issue", "notes","assigned_to"]
 
         def __init__(self, *args, **kwargs):
            super(AssignmentForm, self).__init__(*args, **kwargs)
