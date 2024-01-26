@@ -10,7 +10,7 @@ class AssignmentAdmin(admin.ModelAdmin):
     """Manage the assignments model"""
     list_filter = ('assigned_to', 'issue')
     list_display = ["issue", "assigned_to", "is_completed", "assigned_at"]
-    search_fields = ["issue", "assigned_to", "is_completed"]
+    search_fields = ["issue__ticket_number", "assigned_to__username", "is_completed"]
     
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "assigned_to":
