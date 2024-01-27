@@ -15,7 +15,7 @@
             Progress Status: {{ task.progress_status }}
             Notes: {{ task.notes }}
             Me: {{ task.assigned_to }}
-            <a href="">Update</a>
+            <a href="{% url 'tasks:update_task' task.id %}">Update</a>
         </li>
         {% endfor %}
     </ul>
