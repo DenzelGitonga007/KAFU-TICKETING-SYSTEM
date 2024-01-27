@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages # for dialog messages
 from django.contrib.auth.decorators import login_required # to allow just logged in users
 from django.core.mail import send_mail # to send mails
+from django.conf import settings # to access the email of the host
 from admin_panel.models import Assignment # to view and update the assignment from the admin_panel
 from .forms import UpdateTaskForm # the update task form
 
@@ -25,11 +26,25 @@ def assigned_tasks(request):
 @login_required(login_url="accounts:login")
 def update_tasks(request, task_id):
     """Update the assigned tasks"""
-    task = get_object_or_404(Assignment, id=task_id, assigned_to=request.user) # get the particular assignment as task
+    # Get the logged in user
+    staff = request.user
+    task = get_object_or_404(Assignment, id=task_id, assigned_to=staff) # get the particular assignment as task
     if request.method == "POST":
         form = UpdateTaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
+            # send the email
+            subject = "Task update from {}".format(staff.username)
+            message = "Please log in and affirm that task {} is ready to be marked complete".format(task.issue.ticket_number)
+            system_email = settings.EMAIL_HOST_USER # sender email
+            admin_email = settings.EMAIL_HOST_USER # recepient email
+
+            try:
+                send_mail(subject, message, system_email, [admin_email], fail_silently=False)
+
+            except Exception as e:
+                messages.error(request, "Failed to send the email notification {} to the admin".format(str(e)))
+
             messages.success(request, "Task updated successfully")
             return redirect("accounts:home") # return to the home page
         else:
