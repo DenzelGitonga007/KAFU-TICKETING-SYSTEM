@@ -7,6 +7,12 @@
 </head>
 <body>
     <h1>Home Page</h1>
+    {% if user.is_superuser %}
+    {% for  %}
+    <ul></ul>
+    {% else %}
     <a href="{% url 'clients:submit_issue' %}">Submit an Issue</a>
+    {% endif %}
+    
 </body>
 </html>

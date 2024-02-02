@@ -1,16 +1,27 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from .models import CustomUser
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
 from django.contrib.auth import login, authenticate, logout
+from accounts.models import CustomUser # to display the users
 
 # Create your views here.
 
 # Home
 def home(request):
     """Landing page"""
-    context = {} # to be updated
-    return render(request, 'index.html', context)
+    # if admin is logged in
+    if request.user.is_superuser:
+        support_staff_users = CustomUser.objects.filter(user_type='support_staff') # get the support staff
+        client_users = CustomUser.objects.filter(user_type='client') # get the clients
+        context = {
+            'support_staff_users': support_staff_users,
+            'client_users': client_users
+        }
+        return render(request, 'index.html', context)
+    else:
+        context = {}
+        return render(request, 'index.html', context)
 
 
 # Register user
