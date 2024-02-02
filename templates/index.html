@@ -36,6 +36,9 @@
         {% else %}
             <a href="{% url 'clients:submit_issue' %}">Submit an Issue</a>
         {% endif %}
+        
+    {% else %} <!-- If user is not authenticated -->
+    <p><a href="{% url 'accounts:login' %}">Login</a> | <a href="{% url 'accounts:register' %}">Register</a></p>
     {% endif %}
 
 </body>
