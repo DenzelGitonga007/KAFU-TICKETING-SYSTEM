@@ -11,7 +11,7 @@ from clients.models import Issue # to display the issues
 # Home
 def home(request):
     """Landing page"""
-    issues = Issue.objects.filter(user=request.user) # get the issues of the particular client
+    issues = Issue.objects.filter(user=request.user.id) # get the issues of the particular client
     context = {
         'issues': issues
         }
