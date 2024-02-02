@@ -1,12 +1,4 @@
 
-5. Task Progress:
-   - Support staff updates the task progress (ongoing, incapable, completed) and provides necessary details.
-   - Admin monitors task progress through the admin panel.
-
-6. Incomplete Task Handling:
-   - If marked incomplete, admin receives a notification and follows up.
-   - Support staff provides a description of why the task is marked incomplete.
-
 7. Task Completion:
    - If marked as complete, admin receives a notification.
    - Admin reviews the completion status and either approves or marks as pending.
@@ -40,14 +32,22 @@ Done ✅
    - Admin logs in to the admin panel.
    - Views a list of all submitted issues with relevant details.
    - Accesses a list of all support staff
+
+5. Task Progress:
+   - Support staff updates the task progress (ongoing, incapable, completed) and provides necessary details.
+   - Admin monitors task progress through the admin panel.
    
 
 
 To-Do Later ⌚
-2. Ticket Generation:
-   - Sends an email and site notification to the admin notifying them of the new issue.
+2. In app notification:
+   - Notification in the app, not just on the email.
 
 3. Admin Panel:
    - Accesses a list of all support staff, including those already assigned and available.
 
 * If user is admin, or support staff, when they log in, they're redirected to their respective url
+
+6. Incapable Task Handling:
+   - If marked incapable, admin receives a notification and follows up.
+   - Support staff provides a description of why the task is marked incapable.
