@@ -16,14 +16,26 @@ def is_superuser(user):
 
 
 @user_passes_test(is_superuser ,login_url='accounts:login') # admin must be logged in
-# Assignment model
+# Home model
 def admin_panel(request):
+    # Fetch all items to be rendered onto the Front end
     support_staff_users = CustomUser.objects.filter(user_type='support_staff') # get the support staff
     client_users = CustomUser.objects.filter(user_type='client') # get the clients
     all_issues = Issue.objects.all() # get all issues
     assignments = Assignment.objects.select_related('issues', 'assigned_to').all() # Retrieve all assignments
+    # Render to the Front end
+    context = {
+        'support_staff_users': support_staff_users, # render the support staff
+        'client_users': client_users, # render the clients
+        'all_issues': all_issues, # render the issues submitted
+        "assignments": assignments,
+        }
+    return render(request, "admin_panel/home.html", context)
 
 
+@user_passes_test(is_superuser, login_url='accounts:login') # admin must be logged in
+# Assignment model
+def assign_view(request):
     # Assign issues
     if request.method == "POST":
         form = AssignmentForm(request.POST)
@@ -53,10 +65,6 @@ def admin_panel(request):
         form = AssignmentForm()
     context = {
         "form": form,
-        'support_staff_users': support_staff_users, # render the support staff
-        'client_users': client_users, # render the clients
-        'all_issues': all_issues, # render the issues submitted
-        "assignments": assignments,
-        }
-    return render(request, "admin_panel/home.html", context)
-
+    }
+    return render(request, 'admin_panel/assign.html', context)
+    
