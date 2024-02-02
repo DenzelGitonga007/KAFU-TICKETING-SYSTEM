@@ -22,7 +22,7 @@ def admin_panel_home(request):
     support_staff_users = CustomUser.objects.filter(user_type='support_staff') # get the support staff
     client_users = CustomUser.objects.filter(user_type='client') # get the clients
     all_issues = Issue.objects.all() # get all issues
-    assignments = Assignment.objects.select_related('issues', 'assigned_to').all() # Retrieve all assignments
+    assignments = Assignment.objects.select_related('issue', 'assigned_to').all() # Retrieve all assignments
     # Render to the Front end
     context = {
         'support_staff_users': support_staff_users, # render the support staff

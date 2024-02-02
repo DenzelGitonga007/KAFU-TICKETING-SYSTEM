@@ -41,5 +41,21 @@
         {% endfor %}
     </ul>
 
+    <!-- Display Issues -->
+    <h2>Assignments</h2>
+    <!-- Display the issues submitted -->
+    <p><strong>Assignments</strong></p>
+    <ul>
+        {% for assignment in assignments %}
+            <li>{{ assignment.issue.ticket_number }}</li>
+            <li>{{ assignment.notes }}</li>
+            <li>{{ assignment.assigned_to }}</li>
+            <li>{{ assignment.is_completed }}</li>
+            <li>{{ assignment.progress_status }}</li>
+            <li>{{ assignment.assigned_at }}</li>
+            <li>{{ assignment.updated_at }}</li>
+        {% endfor %}
+    </ul>
+
 </body>
 </html>
