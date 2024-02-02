@@ -4,6 +4,6 @@ from . import views
 app_name = "admin_panel"
 
 urlpatterns = [
-    path('', views.admin_panel, name="admin_panel"), # view the admin panel
+    path('', views.admin_panel_home, name="admin_panel_home"), # view the admin panel
     path('assign_task/', views.assign_view, name="assign") # assign url
 ]

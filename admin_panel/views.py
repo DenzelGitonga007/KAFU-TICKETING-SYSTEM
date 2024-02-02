@@ -17,7 +17,7 @@ def is_superuser(user):
 
 @user_passes_test(is_superuser ,login_url='accounts:login') # admin must be logged in
 # Home model
-def admin_panel(request):
+def admin_panel_home(request):
     # Fetch all items to be rendered onto the Front end
     support_staff_users = CustomUser.objects.filter(user_type='support_staff') # get the support staff
     client_users = CustomUser.objects.filter(user_type='client') # get the clients
@@ -55,7 +55,7 @@ def assign_view(request):
                 # display success that the assigment was done
                 messages.success(request, "Issue assigned to {} successfully".format(assignment_instance.assigned_to.username))
                 # return to home page for admin
-                return redirect('accounts:home')
+                return redirect('admin_panel:admin_panel_home')
             except Exception as e:
                 messages.error(request, "Failed to send email notification: {}".format(str(e)))
         else:
