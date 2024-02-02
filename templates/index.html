@@ -10,8 +10,8 @@
     {% if user.is_authenticated %}
         <a href="{% url 'accounts:logout' %}">Logout</a>
         {% if user.is_superuser %}
-            <p><strong>Support Staff</strong></p>
             <!-- Display the support staff -->
+            <p><strong>Support Staff</strong></p>
             <ul>
                 {% for support_staff_user in support_staff_users %}
                     <li>{{ support_staff_user.username }}</li>
@@ -19,11 +19,22 @@
                     <li>{{ support_staff_user.user_type }}</li>
                 {% endfor %}
             </ul>
+            <!-- Display the support staff -->
+            <p><strong>clients</strong></p>
+            <ul>
+                {% for client_user in client_users %}
+                    <li>{{ client_user.username }}</li>
+                    <li>{{ client_user.email }}</li>
+                    <li>{{ client_user.user_type }}</li>
+                {% endfor %}
+            </ul>
+
+
         <!-- Otherwise, for clients -->
         {% else %}
             <a href="{% url 'clients:submit_issue' %}">Submit an Issue</a>
         {% endif %}
     {% endif %}
-    
+
 </body>
 </html>
