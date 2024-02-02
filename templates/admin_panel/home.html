@@ -54,6 +54,8 @@
             <li>{{ assignment.progress_status }}</li>
             <li>{{ assignment.assigned_at }}</li>
             <li>{{ assignment.updated_at }}</li>
+            <li><a href="{% url 'admin_panel:update_assignment' assignment.id %}">Update</a></li>
+
         {% endfor %}
     </ul>
 

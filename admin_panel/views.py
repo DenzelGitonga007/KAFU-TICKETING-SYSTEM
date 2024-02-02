@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages # for dialog messages
 from django.contrib.auth.decorators import user_passes_test # for logged in admin users only
 from .models import Assignment # the assignement model
 from accounts.models import CustomUser # for the user
 from clients.models import Issue # for all issues
-from .forms import AssignmentForm # the customized assignment form
+from .forms import AssignmentForm, UpdateAssignmentForm # the customized assignment form, and the update one
 from django.conf import settings # to get the settings, sender email if needed
 from django.core.mail import send_mail # to send the mail
 
@@ -68,3 +68,36 @@ def assign_view(request):
     }
     return render(request, 'admin_panel/assign.html', context)
     
+# Update the assignment
+@user_passes_test(is_superuser, login_url='accounts:login') # admin must be logged in
+def update_assignment_view(request, assignment_id):
+    assignment = get_object_or_404(Assignment, id=assignment_id)
+    if request.method == "POST":
+        form = UpdateAssignmentForm(request.POST, instance=assignment)
+        if form.is_valid():
+            updated_assignment = form.save() # save the form as updated_assignment variable
+            # Send email to client if the task is marked complete
+            if updated_assignment.is_completed:
+                subject = "Your issue has been solved"
+                message = "Dear {}, your issue with ticket number {} has been solved. If you have any enquiries, visit the ICT Offices for further assistance. Nonetheless, hope we have been helpful to you. Feel free to submit any other issue you may be having. Thank you.".format(assignment.issue.user, assignment.issue.ticket_number)
+                system_email = settings.EMAIL_HOST_USER # sender's email
+                client_email = assignment.issue.user.email # recipient's email
+                try:
+                    send_mail(subject, message, system_email, [client_email], fail_silently=False)
+                    messages.success(request, "Task completed, and client has been updated")
+                except Exception as e:
+                    messages.error(request, "Failed to notify the client about solving the issue")
+            # Upon successful update
+            messages.success(request, "Task updated successfully")
+            return redirect('admin_panel:admin_panel_home')
+        else:
+            messages.error(request, "Oops! Task not updated... please try again")
+
+    else:
+        form = UpdateAssignmentForm(instance=assignment)
+    # The template
+    context = {
+        'form': form,
+        'assignment': assignment
+    }
+    return render(request, 'admin_panel/update_assignment.html', context)
