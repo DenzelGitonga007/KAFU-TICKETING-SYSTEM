@@ -1,9 +1,4 @@
-
-7. Task Completion by staff:
-   - If marked as complete by staff, admin receives a notification.
-   - Admin reviews the completion status and either approves or marks as pending.
-
-8. User Notification:
+8. User Notification from Admin:
    - If marked as complete by the admin, the user receives a notification that the issue has been resolved.
 
 9. Git Ignore:
@@ -24,19 +19,23 @@ Done ✅
    - Upon submission, the system generates a unique ticket number.
    - Sends an email notification to the user with the ticket number and a confirmation message.
 
-4. Issue Assignment:
-   - Admin assigns the issue to a specific support staff member.
-   - Support staff member receives a notification of the assignment.
-
 3. Admin Panel:
    - Admin logs in to the admin panel.
    - Views a list of all submitted issues with relevant details.
    - Accesses a list of all support staff
 
+4. Issue Assignment:
+   - Admin assigns the issue to a specific support staff member.
+   - Support staff member receives a notification of the assignment.
+
 5. Task Progress:
    - Support staff updates the task progress (ongoing, incapable, completed) and provides necessary details.
    - Admin monitors task progress through the admin panel.
    
+7. Task Completion by staff:
+   - If marked as complete by staff, admin receives a notification.
+   - Admin reviews the completion status and either approves or marks as pending.
+
 
 
 To-Do Later ⌚
