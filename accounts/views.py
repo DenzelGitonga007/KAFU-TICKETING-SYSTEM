@@ -4,6 +4,7 @@ from .models import CustomUser
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from accounts.models import CustomUser # to display the users
+from clients.models import Issue # to display the issues
 
 # Create your views here.
 
@@ -14,13 +15,18 @@ def home(request):
     if request.user.is_superuser:
         support_staff_users = CustomUser.objects.filter(user_type='support_staff') # get the support staff
         client_users = CustomUser.objects.filter(user_type='client') # get the clients
+        all_issues = Issue.objects.all() # get all issues
         context = {
-            'support_staff_users': support_staff_users,
-            'client_users': client_users
+            'support_staff_users': support_staff_users, # render the support staff
+            'client_users': client_users, # render the clients
+            'all_issues': all_issues, # render the issues submitted
         }
         return render(request, 'index.html', context)
     else:
-        context = {}
+        issues = Issue.objects.filter(user=request.user) # get the issues of the particular client
+        context = {
+            'issues': issues
+            }
         return render(request, 'index.html', context)
 
 
