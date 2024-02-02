@@ -18,14 +18,10 @@ def is_superuser(user):
 @user_passes_test(is_superuser ,login_url='accounts:login') # admin must be logged in
 # Assignment model
 def admin_panel(request):
-    # Retrieve all issues
-    issues = Issue.objects.all()
-
-    # Retrieve the support staff
-    support_staff = CustomUser.objects.filter(user_type="support_staff")
-
-    # Retrieve all assignments
-    assignments = Assignment.objects.select_related('issues', 'assigned_to').all()
+    support_staff_users = CustomUser.objects.filter(user_type='support_staff') # get the support staff
+    client_users = CustomUser.objects.filter(user_type='client') # get the clients
+    all_issues = Issue.objects.all() # get all issues
+    assignments = Assignment.objects.select_related('issues', 'assigned_to').all() # Retrieve all assignments
 
 
     # Assign issues
@@ -57,8 +53,9 @@ def admin_panel(request):
         form = AssignmentForm()
     context = {
         "form": form,
-        "issues": issues,
-        "support_staff": support_staff,
+        'support_staff_users': support_staff_users, # render the support staff
+        'client_users': client_users, # render the clients
+        'all_issues': all_issues, # render the issues submitted
         "assignments": assignments,
         }
     return render(request, "admin_panel/home.html", context)

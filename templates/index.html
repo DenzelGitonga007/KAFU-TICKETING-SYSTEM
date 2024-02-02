@@ -7,56 +7,20 @@
 </head>
 <body>
     <h1>Home Page</h1>
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated %} <!-- If user is logged in -->
         <a href="{% url 'accounts:logout' %}">Logout</a>
-        {% if user.is_superuser %}
-        <!-- Display Users -->
-        <h2>Users</h2>
-            <!-- Display the support staff -->
-            <p><strong>Support Staff</strong></p>
+        <a href="{% url 'clients:submit_issue' %}">Submit an Issue</a>
+        {% if issues %} <!-- If the client submitted an issue -->
+            <h2>Your issues</h2>
             <ul>
-                {% for support_staff_user in support_staff_users %}
-                    <li>{{ support_staff_user.username }}</li>
-                    <li>{{ support_staff_user.email }}</li>
-                    <li>{{ support_staff_user.user_type }}</li>
-                {% endfor %}
-            </ul>
-            <!-- Display the support staff -->
-            <p><strong>clients</strong></p>
-            <ul>
-                {% for client_user in client_users %}
-                    <li>{{ client_user.username }}</li>
-                    <li>{{ client_user.email }}</li>
-                    <li>{{ client_user.user_type }}</li>
-                {% endfor %}
-            </ul>
-        
-        <!-- Display Issues -->
-        <h2>Issues</h2>
-            <!-- Display the issues submitted -->
-            <p><strong>Clients' Issues</strong></p>
-            <ul>
-                {% for issue in all_issues %}
+                {% for issue in issues %}
                     <li>{{ issue.ticket_number }}</li>
-                    <li>{{ issue.user.username }}</li>
-                    <li>{{ issue.user.user_type }}</li>
+                    <li>{{ issue.description }}</li>
+                    <li>{{ issue.attachment }}</li>
+                    <li>{{ issue.created_at }}</li>
+                    
                 {% endfor %}
             </ul>
-
-        {% else %} <!-- Otherwise, for clients -->
-            <a href="{% url 'clients:submit_issue' %}">Submit an Issue</a>
-            {% if issues %} <!-- If the client submitted an issue -->
-                <h2>Your issues</h2>
-                <ul>
-                    {% for issue in issues %}
-                        <li>{{ issue.ticket_number }}</li>
-                        <li>{{ issue.description }}</li>
-                        <li>{{ issue.attachment }}</li>
-                        <li>{{ issue.created_at }}</li>
-                        
-                    {% endfor %}
-                </ul>
-            {% endif %}
         {% endif %}
         
     {% else %} <!-- If user is not authenticated -->

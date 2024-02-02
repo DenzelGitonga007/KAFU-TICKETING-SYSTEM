@@ -7,6 +7,39 @@
 </head>
 <body>
     <h1>Admin Panel</h1>
+    <!-- Display Users -->
+    <h2>Users</h2>
+    <!-- Display the support staff -->
+    <p><strong>Support Staff</strong></p>
+    <ul>
+        {% for support_staff_user in support_staff_users %}
+            <li>{{ support_staff_user.username }}</li>
+            <li>{{ support_staff_user.email }}</li>
+            <li>{{ support_staff_user.user_type }}</li>
+        {% endfor %}
+    </ul>
+    <!-- Display the support staff -->
+    <p><strong>clients</strong></p>
+    <ul>
+        {% for client_user in client_users %}
+            <li>{{ client_user.username }}</li>
+            <li>{{ client_user.email }}</li>
+            <li>{{ client_user.user_type }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Display Issues -->
+    <h2>Issues</h2>
+    <!-- Display the issues submitted -->
+    <p><strong>Clients' Issues</strong></p>
+    <ul>
+        {% for issue in all_issues %}
+            <li>{{ issue.ticket_number }}</li>
+            <li>{{ issue.user.username }}</li>
+            <li>{{ issue.user.user_type }}</li>
+        {% endfor %}
+    </ul>
+
     <p>Assignement Form</p>
     <form method="post">
         {% csrf_token %}

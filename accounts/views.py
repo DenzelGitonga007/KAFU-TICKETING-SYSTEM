@@ -11,23 +11,11 @@ from clients.models import Issue # to display the issues
 # Home
 def home(request):
     """Landing page"""
-    # if admin is logged in
-    if request.user.is_superuser:
-        support_staff_users = CustomUser.objects.filter(user_type='support_staff') # get the support staff
-        client_users = CustomUser.objects.filter(user_type='client') # get the clients
-        all_issues = Issue.objects.all() # get all issues
-        context = {
-            'support_staff_users': support_staff_users, # render the support staff
-            'client_users': client_users, # render the clients
-            'all_issues': all_issues, # render the issues submitted
+    issues = Issue.objects.filter(user=request.user) # get the issues of the particular client
+    context = {
+        'issues': issues
         }
-        return render(request, 'index.html', context)
-    else:
-        issues = Issue.objects.filter(user=request.user) # get the issues of the particular client
-        context = {
-            'issues': issues
-            }
-        return render(request, 'index.html', context)
+    return render(request, 'index.html', context)
 
 
 # Register user
