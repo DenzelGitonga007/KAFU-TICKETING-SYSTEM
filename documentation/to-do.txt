@@ -49,3 +49,5 @@ To-Do Later ⌚
 
 3. Admin Panel:
    - Accesses a list of all support staff, including those already assigned and available.
+
+* If user is admin, or support staff, when they log in, they're redirected to their respective url
