@@ -1,6 +1,6 @@
 
-7. Task Completion:
-   - If marked as complete, admin receives a notification.
+7. Task Completion by staff:
+   - If marked as complete by staff, admin receives a notification.
    - Admin reviews the completion status and either approves or marks as pending.
 
 8. User Notification:
