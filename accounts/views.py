@@ -57,6 +57,10 @@ def login_user(request):
 
 # Logout
 def logout_user(request):
-    """Logout the user"""
-    logout(request)
-    return redirect('accounts:home')
+    """Logout"""
+    if request.method == "POST":
+        logout(request)
+        messages.success(request, "You have successfully logged out...")
+        return redirect("accounts:home")
+    context = {}
+    return render(request, "accounts/logout.html", context)
