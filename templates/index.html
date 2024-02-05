@@ -2,24 +2,49 @@
 {% block title %} Home {{ block.super }} {% endblock %}
 {% block content %}
 
-    <h1>Home Page</h1>
-    {% if user.is_authenticated %} <!-- If user is logged in -->
-        
-        <a href="{% url 'clients:submit_issue' %}">Submit an Issue</a>
-        {% if issues %} <!-- If the client submitted an issue -->
-            <h2>Your issues</h2>
-            <ul>
-                {% for issue in issues %}
-                    <li>{{ issue.ticket_number }}</li>
-                    <li>{{ issue.description }}</li>
-                    <li>{{ issue.attachment }}</li>
-                    <li>{{ issue.created_at }}</li>
-                    
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endif %}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container mt-4">
+            <h1 class="display-4">Welcome to the Home Page</h1>
+            <p class="lead">Submit an issue and keep track of your tasks effortlessly.</p>
+            <hr class="mr-4">
+            {% if user.is_authenticated %}
+                <a class="btn btn-success btn-lg mt-3" href="{% url 'clients:submit_issue' %}" style="animation: swing 1s infinite;">Submit an Issue</a>
 
+                {% if issues %}
+                    <h2 class="mt-4">Your Submitted Issues</h2>
+
+                    {% for issue in issues %}
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Ticket Number: {{ issue.ticket_number }}</h5>
+                                <p class="card-text">Description: {{ issue.description }}</p>
+                                <!-- Display attachments appropriately -->
+                                {% if issue.attachment %}
+                                    <p class="card-text">Attachment: <a href="{{ issue.attachment.url }}" target="_blank">Download Attachment</a></p>
+                                {% endif %}
+                                <p class="card-text">Created at: {{ issue.created_at|date:"F j, Y" }} at {{ issue.created_at|time:"g:i A" }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% else %}
+                <p class="mt-3" style="animation: swing 1s infinite;">Please <a href="{% url 'accounts:login' %}">log in</a> or <a href="{% url 'accounts:register' %}">register</a> to submit and view your issues.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <style>
+        @keyframes swing {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(0);
+            }
+            40% {
+                transform: translateX(-15px);
+            }
+            60% {
+                transform: translateX(15px);
+            }
+        }
+    </style>
 
 {% endblock %}
-
