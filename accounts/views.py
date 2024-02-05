@@ -44,7 +44,13 @@ def login_user(request):
             user = form.get_user()
             login(request, user)
             messages.success(request, "Congratulations! You're logged in")
-            return redirect('accounts:home')
+            # Redirect to respective urls
+            if user.user_type == 'admin': # if user is 'admin', redirect to admin url
+                return redirect('admin_panel:admin_panel_home')
+            elif user.user_type == 'support_staff': # if user is 'support_staff', redirect to tasks:list_tasks
+                return redirect('tasks:list_tasks')
+            else:
+                return redirect('accounts:home') 
         else:
             # What should go here?
             messages.error(request, "Login failed! Please try again")
