@@ -1,3 +1,4 @@
+/* Swinging effect */
 @keyframes swing {
     0%, 20%, 50%, 80%, 100% {
         transform: translateX(0);
