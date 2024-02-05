@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'accounts', # User accounts
     'clients', # Client issue submission, and notifications to both admin and client
     'admin_panel', # Admin can manage all activities
-    'tasks' # support staff tasks
+    'tasks', # support staff tasks
+    'bootstrap5' # UI
 ]
 
 MIDDLEWARE = [
