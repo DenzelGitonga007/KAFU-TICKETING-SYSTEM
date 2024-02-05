@@ -4,13 +4,14 @@
 
     <div class="jumbotron jumbotron-fluid">
         <div class="container mt-4">
-            <h1 class="display-4">Hello, {{ user.get_full_name }}</h1>
-            <p class="lead">Submit an issue and keep track of your tasks effortlessly.</p>
-            <hr class="mr-4">
             {% if user.is_authenticated %}
+                <h1 class="display-4">Hello, {{ user.get_full_name }}</h1>
+                <p class="lead">Submit an issue and keep track of your tasks effortlessly.</p>
+                <hr class="mr-4">
                 <a class="btn btn-success btn-lg mt-3" href="{% url 'clients:submit_issue' %}" style="animation: swing 1s infinite;">Submit an Issue</a>
-                <hr class="my-4">
+                
                 {% if issues %}
+                    <hr class="my-4">
                     <h3 class="mt-4">Your Submitted Issues</h3>
                     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                         {% for issue in issues %}
@@ -31,9 +32,17 @@
                         {% endfor %}
                     </div>
                 {% endif %}
+            <!-- If user not logged in -->
             {% else %}
-                <p class="mt-3" style="animation: swing 1s infinite;">Please <a href="{% url 'accounts:login' %}">log in</a> or <a href="{% url 'accounts:register' %}">register</a> to submit and view your issues.</p>
+            <h1 class="display-4">Welcome to The KAFU Ticketing System</h1>
+            <p class="lead">You can submit your issues on this platform.</p>
+            <p class="lead" style="animation: swing 1s infinite;">
+                <a class="btn btn-primary btn-lg" href="{% url 'accounts:login' %}" role="button">Login</a>
+                <a class="btn btn-success btn-lg" href="{% url 'accounts:register' %}" role="button">Register</a>
+            </p>
             {% endif %}
+
+
         </div>
     </div>
 
