@@ -2,3 +2,4 @@ env-kafu-ticketing-sys/
 *.pyc
 __pycache__/
 db.sqlite3
+fun/
