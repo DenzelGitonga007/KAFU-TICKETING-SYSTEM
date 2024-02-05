@@ -16,6 +16,8 @@ class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
     # Other fields to be added here
 
+    # Get the fullname
+
     def __str__(self):
         """Stringify the values"""
         return self.username
