@@ -9,6 +9,11 @@
     <link rel="icon" type="image/x-icon" href="{% static 'assets/images/favicon.ico' %}">
     <!-- Designs -->
     <link rel="stylesheet" href="{% static 'designs/custom_styles.css' %}">
+    <!-- Including jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+    <!-- Including Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Load the django bootstrap -->
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
@@ -67,7 +72,7 @@
     
     <!-- Main content -->
     <div class="container-fluid">
-        <!-- Include common/messages.html -->
+        {% include 'common/messages.html' %}
         {% block content %}{% endblock %}
     </div>
 

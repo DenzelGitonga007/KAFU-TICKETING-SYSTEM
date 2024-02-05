@@ -1,0 +1,32 @@
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <div id="alert" class="container-fluid p-1">
+            <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert" >
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">  
+                </button>
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<script> 
+    // Function to toggle alert visibility at intervals
+    function flashAlert() {
+        $('#alert').fadeTo(500, 0.5).fadeTo(500, 1.0);
+    }
+
+    // Set interval to flash alert every 1000 milliseconds (1 second)
+    var flashInterval = setInterval(flashAlert, 1000);
+
+    // Set timeout to close the alert after 35000 milliseconds (35 seconds)
+    setTimeout(function () { 
+        clearInterval(flashInterval);  // Clear the flashing interval
+        $('#alert').alert('close'); 
+    }, 4000); 
+</script>
+
+
+
