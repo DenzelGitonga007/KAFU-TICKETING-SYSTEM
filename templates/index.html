@@ -4,7 +4,7 @@
 
     <h1>Home Page</h1>
     {% if user.is_authenticated %} <!-- If user is logged in -->
-        <a href="{% url 'accounts:logout' %}">Logout</a>
+        
         <a href="{% url 'clients:submit_issue' %}">Submit an Issue</a>
         {% if issues %} <!-- If the client submitted an issue -->
             <h2>Your issues</h2>
@@ -18,9 +18,6 @@
                 {% endfor %}
             </ul>
         {% endif %}
-        
-    {% else %} <!-- If user is not authenticated -->
-    <p><a href="{% url 'accounts:login' %}">Login</a> | <a href="{% url 'accounts:register' %}">Register</a></p>
     {% endif %}
 
 

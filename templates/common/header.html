@@ -4,12 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} | KAFU Ticketing System {% endblock %}</title>
+    
+    {% load static %}
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img src="{% static 'assets/images/logo.jpeg' %}" alt="Logo">
+                    KAFU Ticketing System
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <!-- <a class="nav-link text-white" href="/">Home</a> -->
+                        </li>
+                    </ul>
+                    <!-- User auth -->
+                    <ul class="navbar-nav ms-auto">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <p class="nav-link text-white">Welcome, {{ user.username }}</p>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'accounts:logout' %}">Logout</a>
+                            </li>
+                        {% else %}
+                        {% if request.resolver_match.url_name != 'login' %}
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'accounts:login' %}">Login</a>
+                            </li>
+                        {% endif %}
+                        {% if request.resolver_match.url_name != 'register' %}
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'accounts:register' %}">Register</a>
+                            </li>
+                        {% endif %}
+                        {% endif %}
+                    </ul>
+                    <!-- End of user auth -->
+
+
+                </div>
+            </div>
+        </nav>
+        <!-- End of Navbar -->
+    </header>
+    
+    
+    
+    <!-- Main content -->
+    <div class="container-fluid">
+        <!-- Include common/messages.html -->
+        {% block content %}{% endblock %}
+    </div>
+
+    {% include 'common/footer.html' %}
 </body>
 </html>
