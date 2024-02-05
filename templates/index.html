@@ -23,7 +23,7 @@
                                         {% if issue.attachment %}
                                             <p class="card-text">Attachment: <a href="{{ issue.attachment.url }}" target="_blank">Download Attachment</a></p>
                                         {% endif %}
-                                        <p class="card-text">Created at: {{ issue.created_at|date:"F j, Y" }} at {{ issue.created_at|time:"g:i A" }}</p>
+                                        <p class="card-text">Created on: {{ issue.created_at|date:"F j, Y" }} at {{ issue.created_at|time:"g:i A" }}</p>
                                         <a class="btn btn-warning" href="">Track Progress</a>
                                     </div>
                                 </div>
