@@ -17,7 +17,15 @@ class CustomUser(AbstractUser):
     # Other fields to be added here
 
     # Get the fullname
-
+    def get_full_name(self):
+        """Get fullname"""
+        if self.first_name and self.last_name:
+            """Combine these and return the name"""
+            return "{} {}".format(self.first_name, self.last_name)
+        else:
+            return self.username
+        
+    
     def __str__(self):
         """Stringify the values"""
         return self.username
