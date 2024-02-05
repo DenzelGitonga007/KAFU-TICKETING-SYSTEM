@@ -14,97 +14,10 @@
 
     <div id="content">
         <div class="container mt-5">
-            <h1 class="mb-4">Admin Panel</h1>
+            <h3 class="mb-4">Admin Panel</h3>
 
             <!-- Assign Task Button -->
-            <p><strong><a href="{% url 'admin_panel:assign' %}" class="btn btn-primary">Assign Task</a></strong></p>
-
-            <!-- Support Staff Section -->
-            <div id="support-staff" class="mb-4">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        <h2>Support Staff</h2>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>User Type</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for support_staff_user in support_staff_users %}
-                                    <tr>
-                                        <td>{{ support_staff_user.username }}</td>
-                                        <td>{{ support_staff_user.email }}</td>
-                                        <td>{{ support_staff_user.user_type }}</td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Clients Section -->
-            <div id="clients" class="mb-4">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        <h2>Clients</h2>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>User Type</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for client_user in client_users %}
-                                    <tr>
-                                        <td>{{ client_user.username }}</td>
-                                        <td>{{ client_user.email }}</td>
-                                        <td>{{ client_user.user_type }}</td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Issues Section -->
-            <div id="issues" class="mb-4">
-                <div class="card">
-                    <div class="card-header bg-info text-white">
-                        <h2>Issues</h2>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Ticket Number</th>
-                                    <th>User</th>
-                                    <th>User Type</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for issue in all_issues %}
-                                    <tr>
-                                        <td>{{ issue.ticket_number }}</td>
-                                        <td>{{ issue.user.username }}</td>
-                                        <td>{{ issue.user.user_type }}</td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            <p style="animation: swing 1s infinite;"><strong><a href="{% url 'admin_panel:assign' %}" class="btn btn-warning">Assign Task</a></strong></p>
 
             <!-- Assignments Section -->
             <div id="assignments">
@@ -113,7 +26,7 @@
                         <h2>Assignments</h2>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-responsive">
                             <thead>
                                 <tr>
                                     <th>Ticket Number</th>
@@ -144,6 +57,95 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Support Staff Section -->
+            <div id="support-staff" class="mb-4">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h2>Support Staff</h2>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>User Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for support_staff_user in support_staff_users %}
+                                    <tr>
+                                        <td>{{ support_staff_user.username }}</td>
+                                        <td>{{ support_staff_user.email }}</td>
+                                        <td>{{ support_staff_user.user_type }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clients Section -->
+            <div id="clients" class="mb-4">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h2>Clients</h2>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>User Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for client_user in client_users %}
+                                    <tr>
+                                        <td>{{ client_user.username }}</td>
+                                        <td>{{ client_user.email }}</td>
+                                        <td>{{ client_user.user_type }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Issues Section -->
+            <div id="issues" class="mb-4">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h2>Issues</h2>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Ticket Number</th>
+                                    <th>User</th>
+                                    <th>User Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for issue in all_issues %}
+                                    <tr>
+                                        <td>{{ issue.ticket_number }}</td>
+                                        <td>{{ issue.user.username }}</td>
+                                        <td>{{ issue.user.user_type }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 
