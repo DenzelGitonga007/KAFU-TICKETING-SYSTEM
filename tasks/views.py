@@ -60,7 +60,7 @@ def update_tasks(request, task_id):
                     messages.error(request, "Failed to send the email notification {} to the admin".format(str(e)))
 
             messages.success(request, "Task updated successfully")
-            return redirect("accounts:home") # return to the home page
+            return redirect("tasks:list_tasks") # return to the home page
         else:
             messages.error(request, "Oops! Task not updated... please try again or contact ICT Support Admin")
     else:
