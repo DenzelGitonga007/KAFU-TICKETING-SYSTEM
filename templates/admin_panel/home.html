@@ -60,6 +60,37 @@
                 </div>
             </div>
 
+            <!-- Issues Section -->
+            <div id="issues" class="mb-4">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h2>Issues</h2>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Ticket Number</th>
+                                    <th>User</th>
+                                    <th>User Type</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for issue in all_issues %}
+                                    <tr>
+                                        <td>{{ issue.ticket_number }}</td>
+                                        <td>{{ issue.user.username }}</td>
+                                        <td>{{ issue.user.user_type }}</td>
+                                        <td><a href="" class="btn btn-info">Assign</a></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
             <!-- Support Staff Section -->
             <div id="support-staff" class="mb-4">
                 <div class="card">
@@ -117,36 +148,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Issues Section -->
-            <div id="issues" class="mb-4">
-                <div class="card">
-                    <div class="card-header bg-success text-white">
-                        <h2>Issues</h2>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered table-responsive">
-                            <thead>
-                                <tr>
-                                    <th>Ticket Number</th>
-                                    <th>User</th>
-                                    <th>User Type</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for issue in all_issues %}
-                                    <tr>
-                                        <td>{{ issue.ticket_number }}</td>
-                                        <td>{{ issue.user.username }}</td>
-                                        <td>{{ issue.user.user_type }}</td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
 
         </div>
     </div>
