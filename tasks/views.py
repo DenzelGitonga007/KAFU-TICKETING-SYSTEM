@@ -28,6 +28,7 @@ def update_tasks(request, task_id):
     """Update the assigned tasks"""
     # Get the logged in user
     staff = request.user
+    # Get the assigned task
     task = get_object_or_404(Assignment, id=task_id, assigned_to=staff) # get the particular assignment as task
     if request.method == "POST":
         form = UpdateTaskForm(request.POST, instance=task)

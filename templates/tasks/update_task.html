@@ -12,13 +12,27 @@
                             <!-- Notes -->
                             <div class="mb-3">
                                 <label for="id_notes" class="form-label">Notes</label>
-                                <textarea name="notes" class="form-control" rows="5" placeholder="Provide a brief description"></textarea>
+                                <textarea name="notes" class="form-control" rows="5" placeholder="Provide a brief description">{{ form.instance.notes }}</textarea>
                             </div>
+                            <!-- Display current status -->
+                            <p>Current Status: {{ form.instance.progress_status }}</p>
+
                             <!-- Select progress status -->
                             <div class="mb-3">
-                                <label for="id_progress_status" class="form-label">Change Status: </label>
-                                <input type="" class="form-control" name="progress_status" id="id_progress_status" required>
+                                <label for="progress_status" class="form-label">Change Status?</label>
+                                <div class="input-group">
+                                    <select name="progress_status" id="progress_status" class="form-select" aria-label="Change Status">
+                                        {% for status, status_label in form.fields.progress_status.choices %}
+                                            {% if status != form.instance.progress_status %}
+                                                <option value="{{ status }}">{{ status_label }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
                             </div>
+
+
+
                             <div class="text-center">
                                 <button type="submit" class="btn btn-success btn-block">Update</button>
                                 <a href="{% url 'accounts:home' %}" class="btn btn-outline-warning btn-block">Back</a>
