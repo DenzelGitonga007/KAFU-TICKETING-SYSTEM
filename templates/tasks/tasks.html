@@ -1,26 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasks</title>
-</head>
-<body>
-    <h1>Tasks</h1>
-    {% if assigned_tasks %}
-    <ul>
-        {% for task in assigned_tasks %}
-        <li>
-            Issue: {{ task.issue.ticket_number }}
-            Progress Status: {{ task.progress_status }}
-            Notes: {{ task.notes }}
-            Me: {{ task.assigned_to }}
-            <a href="{% url 'tasks:update_task' task.id %}">Update</a>
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No tasks assigned</p>
-    {% endif %}
-</body>
-</html>
+{% extends 'common/base.html' %}
+{% block title %} My Tasks {{ block.super }} {% endblock %}
+{% block content %}
+
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container mt-4">
+            {% if assigned_tasks %}
+            <h3 class="mt-4">Tasks assigned to you, {{ request.user }}</h3>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <!-- Display the assigned tasks -->
+                {% for task in assigned_tasks %}
+                <div class="col mb-4">
+                    <div class="card ">
+                        <div class="card-body">
+                            <h5 class="card-title">Issue: {{ task.issue.ticket_number }}</h5>
+                            <p class="card-text">Notes: {{ task.notes }}</p>
+                            <p class="card-text">Progress Status: {{ task.progress_status }}</p>
+                            <p class="card-text">Assigned To: {{ task.assigned_to }}</p>
+                            
+                            <a class="btn btn-warning" href="">Track Progress</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+            <p>No tasks assigned</p>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
