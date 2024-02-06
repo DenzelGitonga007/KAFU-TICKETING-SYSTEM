@@ -4,7 +4,10 @@
 
     <div class="jumbotron jumbotron-fluid">
         <div class="container mt-4">
+            
             {% if user.is_authenticated %}
+            <!-- If user is admin, display the admin_panel/home.html content -->
+            <!-- If user is support staff, display the tasks/tasks.html content -->
                 <h1 class="display-4">Hello, {{ user.get_full_name }}</h1>
                 <p class="lead">Submit an issue and keep track of your tasks effortlessly.</p>
                 <hr class="mr-4">
