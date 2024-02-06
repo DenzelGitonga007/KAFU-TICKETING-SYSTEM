@@ -76,6 +76,10 @@ def assign_view(request):
 # Update the assignment
 @user_passes_test(is_superuser, login_url='accounts:login') # admin must be logged in
 def update_assignment_view(request, assignment_id):
+    """Update the assignments"""
+    # Get the support staff only
+    support_staffs = CustomUser.objects.filter(user_type='support_staff')
+    # Get the assignments
     assignment = get_object_or_404(Assignment, id=assignment_id)
     if request.method == "POST":
         form = UpdateAssignmentForm(request.POST, instance=assignment)
@@ -103,6 +107,7 @@ def update_assignment_view(request, assignment_id):
     # The template
     context = {
         'form': form,
-        'assignment': assignment
+        'assignment': assignment,
+        'support_staffs': support_staffs
     }
     return render(request, 'admin_panel/update_assignment.html', context)

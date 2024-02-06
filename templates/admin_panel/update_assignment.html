@@ -1,10 +1,60 @@
 {% extends 'common/base.html' %}
 {% block title %} Update Assignment {{ block.super }} {% endblock %}
 {% block content %}
-    <h1>Update Assignment</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Update</button>
-    </form>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title text-center mb-4">Update Assignment</h3>
+                        <form method="post">
+                            {% csrf_token %}
+                            <!-- Notes -->
+                            <div class="mb-3">
+                                <label for="id_notes" class="form-label">Notes</label>
+                                <textarea name="notes" class="form-control" rows="5" placeholder="Provide a brief description">{{ form.instance.notes }}</textarea>
+                            </div>
+
+                            
+                            
+
+                            <!-- Select staff -->
+                            <div class="mb-3">
+                                <!-- Display current support staff -->
+                                <p>Current Staff: {{ form.instance.assigned_to.username }}</p>
+
+                                <label for="id_assigned_to" class="form-label">Change Staff?</label>
+                                <div class="input-group">
+                                    <select name="assigned_to" id="id_assigned_to" class="form-select" aria-label="Change Staff">
+                                        {% for staff in support_staffs %}
+                                            <option value="{{ staff.id }}" {% if staff == form.instance.assigned_to %}selected{% endif %}> <!-- display the selected staff-->
+                                                {{ staff.username }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <!-- Mark complete or not -->
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" name="is_completed" type="checkbox" id="id_is_completed" {% if form.instance.is_completed %} checked {% endif %}>
+                                    <label class="form-check-label" for="id_is_completed">
+                                        Is complete?
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success btn-block">Update</button>
+                                <a href="{% url 'accounts:home' %}" class="btn btn-outline-warning btn-block">Back</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 {% endblock %}
