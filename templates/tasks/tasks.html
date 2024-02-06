@@ -18,7 +18,7 @@
                             <p class="card-text">Progress Status: {{ task.progress_status }}</p>
                             <p class="card-text">Assigned To: {{ task.assigned_to }}</p>
                             
-                            <a class="btn btn-warning" href="">Track Progress</a>
+                            <a class="btn btn-success" style="animation: swing 1s infinite;" href="{% url 'tasks:update_task' task.id %}">Update</a>
                         </div>
                     </div>
                 </div>
