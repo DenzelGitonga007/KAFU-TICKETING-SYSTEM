@@ -12,19 +12,29 @@
                             {% csrf_token %}
                             <!-- Select issue -->
                             <div class="mb-3">
-                                <label for="id_issue" class="form-label">Select the issue: </label>
-                                <input type="" class="form-control" name="issue" id="id_issue" required>
+                                <select name="issue" class="form-select" aria-label="Disabled select example">
+                                    <option class="disabled">Select Issue</option>
+                                    {% for issue in issues %}
+                                        <option value="{{ issue.id }}">{{ issue.ticket_number }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
+
                             <!-- Notes -->
                             <div class="mb-3">
                                 <label for="id_notes" class="form-label">Notes</label>
                                 <textarea name="notes" class="form-control" rows="5" placeholder="Provide a brief description"></textarea>
                             </div>
-                            <!-- Select support staff -->
+                            <!-- Select issue -->
                             <div class="mb-3">
-                                <label for="id_assigned_to" class="form-label">Assign to: </label>
-                                <input type="" class="form-control" name="assigned_to" id="id_assigned_to" required>
+                                <select name="assigned_to" class="form-select" aria-label="Disabled select example">
+                                    <option class="disabled">Assign To?</option>
+                                    {% for support_staff in support_staffs %}
+                                        <option value="{{ support_staff.id }}">{{ support_staff.username }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
+                            <!-- Assign buttons -->
                             <div class="text-center">
                                 <button type="submit" class="btn btn-success btn-block">Assign</button>
                                 <a href="{% url 'accounts:home' %}" class="btn btn-outline-warning btn-block">Back</a>

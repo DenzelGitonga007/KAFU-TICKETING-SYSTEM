@@ -37,6 +37,9 @@ def admin_panel_home(request):
 # Assignment model
 def assign_view(request):
     # Assign issues
+    # Get the support staff only
+    support_staffs = CustomUser.objects.filter(user_type='support_staff')
+    issues = Issue.objects.all()
     if request.method == "POST":
         form = AssignmentForm(request.POST)
         if form.is_valid():
@@ -65,6 +68,8 @@ def assign_view(request):
         form = AssignmentForm()
     context = {
         "form": form,
+        "support_staffs": support_staffs,
+        "issues": issues,
     }
     return render(request, 'admin_panel/assign.html', context)
     
