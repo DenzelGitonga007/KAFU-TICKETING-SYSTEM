@@ -10,15 +10,18 @@
                         <h3 class="card-title text-center mb-4">Assign Task</h3>
                         <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
-                            <!-- Select issue -->
-                            <div class="mb-3">
-                                <select name="issue" class="form-select" aria-label="Disabled select example">
-                                    <option class="disabled">Select Issue</option>
-                                    {% for issue in issues %}
-                                        <option value="{{ issue.id }}">{{ issue.ticket_number }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
+<!-- Select issue -->
+<div class="mb-3">
+    <select name="issue" class="form-select" aria-label="Disabled select example">
+        <option class="disabled">Select Issue</option>
+        {% for issue in issues %}
+            <option value="{{ issue.id }}">
+                {{ issue.ticket_number }} - by {{ issue.user.username }} - on {{ issue.created_at|date:"d/m/Y" }}
+            </option>
+        {% endfor %}
+    </select>
+</div>
+
 
                             <!-- Notes -->
                             <div class="mb-3">
