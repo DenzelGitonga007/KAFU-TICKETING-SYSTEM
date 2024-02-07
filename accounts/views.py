@@ -1,21 +1,47 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import CustomUser
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from accounts.models import CustomUser # to display the users
 from clients.models import Issue # to display the issues
+# The views based on the type of user
+from admin_panel.views import admin_panel_home # display the admin home page
+from tasks.views import assigned_tasks # display the support staff page
 
 # Create your views here.
 
 # Home
 def home(request):
-    """Landing page"""
-    issues = Issue.objects.filter(user=request.user.id) # get the issues of the particular client
-    context = {
-        'issues': issues
-        }
+    """
+    Display the landing page.
+
+    For authenticated users:
+        - If the user is an admin, redirect to the admin panel home.
+        - If the user is a support staff, redirect to the assigned tasks.
+
+    For unauthenticated users:
+        - Display the landing page with issues submitted by the user (if any).
+    """
+    user = request.user  # The logged-in user
+    issues = Issue.objects.filter(user=user.id)  # Issues submitted by the user
+
+    # Check if the user is authenticated/logged in
+    if user.is_authenticated:
+        # Check the type of user
+        if user.user_type == 'admin':
+            return admin_panel_home(request)
+        elif user.user_type == 'support_staff':
+            return assigned_tasks(request)
+
+    context = {"issues": issues}
+    
+    # For unauthenticated users
     return render(request, 'index.html', context)
+
+
+        
+
 
 
 # Register user
