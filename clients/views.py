@@ -25,7 +25,7 @@ def submit_issue(request):
             client_subject = "Issue submitted succefully"
             client_message = "Your issue has been received, and is being worked on. Your ticket number is {}. For any enquries, please contact the ICT Support".format(issue.ticket_number)
             sender_email = settings.EMAIL_HOST_USER
-            receipient_email = ["denzelgitonga007@gmail.com"]
+            receipient_email = [request.user.email]
             send_mail(
                 client_subject,
                 client_message,
@@ -36,7 +36,7 @@ def submit_issue(request):
             
             # Admin
             admin_subject = "A new issue {} submitted".format(issue.ticket_number)
-            admin_message = "Please login and find check out the issue, for more information"
+            admin_message = "Please login and check out the issue, for more information"
             sender_email = settings.EMAIL_HOST_USER
             receipient_email = ["gitongadenzel@gmail.com"]
             send_mail(
